@@ -146,6 +146,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service_64 \
+    libdng_sdk.vendor \
+    libgui_vendor \
     libxml2 \
     Snap \
     vendor.qti.hardware.camera.device@1.0.vendor
@@ -351,14 +353,15 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    fstab.qcom \
     init.insmod.sh \
     init.msm.usb.configfs.rc \
     init.power.rc \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
-    ueventd.qcom.rc \
-    fstab.qcom
+    init.recovery.qcom.rc \
+    ueventd.qcom.rc
 
 # RCS
 PRODUCT_PACKAGES += \
@@ -367,18 +370,8 @@ PRODUCT_PACKAGES += \
     rcs_service_api \
     rcs_service_api.xml
 
-ifeq ($(strip $(TARGET_PRODUCT_HARDWARE)),davinci)
-PRODUCT_PACKAGES += \
-    init.davinci.rc
-else ifeq ($(strip $(TARGET_PRODUCT_HARDWARE)),tucana)
 PRODUCT_PACKAGES += \
     init.tucana.rc
-endif
-
-ifneq ($(strip $(TARGET_PRODUCT_HARDWARE)),violet)
-PRODUCT_PACKAGES += \
-    init.sm7150.rc
-endif
 
 # Recovery
 PRODUCT_PACKAGES += \
